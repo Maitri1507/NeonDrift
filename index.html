@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09131f" />
+    <title>Neon Drift</title>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">+</span><span>NEON DRIFT</span></div>
+        <div class="status-cluster">
+          <div class="stat"><span class="stat-label">SCORE</span><strong id="score">000000</strong></div>
+          <div class="stat"><span class="stat-label">BEST</span><strong id="best">000000</strong></div>
+          <div class="lives" aria-label="Lives"><span class="stat-label">HULL</span><span id="lives" class="hull-lights"></span></div>
+        </div>
+      </header>
+
+      <section class="game-stage" aria-label="Neon Drift game">
+        <canvas id="game-canvas"></canvas>
+        <div id="start-panel" class="overlay-panel">
+          <div class="panel-kicker">DEEP SPACE // SECTOR 07</div>
+          <h1>NEON<br /><em>DRIFT</em></h1>
+          <p>Thread the light. Outrun the dark.</p>
+          <button id="start-button" class="primary-button">Launch run <span>-></span></button>
+          <div class="control-hint"><span>ARROWS</span> or <span>A / D</span> to steer</div>
+        </div>
+        <div id="game-over-panel" class="overlay-panel is-hidden">
+          <div class="panel-kicker">SIGNAL LOST</div>
+          <h2>RUN<br /><em>ENDED</em></h2>
+          <div class="final-score-label">FINAL SCORE</div>
+          <div id="final-score" class="final-score">000000</div>
+          <button id="restart-button" class="primary-button">Try again <span>↻</span></button>
+        </div>
+        <div class="scanline"></div>
+      </section>
+
+      <footer class="footerbar">
+        <div class="footer-note"><span class="live-dot"></span> LIVE FLIGHT SYSTEM</div>
+        <div class="footer-note">COLLECT <b class="cyan">SHARDS</b> <span class="slash">/</span> AVOID <b class="orange">DEBRIS</b></div>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
