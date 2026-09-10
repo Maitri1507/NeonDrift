@@ -12,7 +12,14 @@ const finalScoreElement = document.querySelector('#final-score');
 const startButton = document.querySelector('#start-button');
 const restartButton = document.querySelector('#restart-button');
 
-const state = { running: false, score: 0, lives: 3, best: Number(localStorage.getItem('neon-drift-best') || 0), speed: 1, spawnTimer: 0, shardTimer: 0, lastTime: 0 };
+const BEST_SCORE_KEY = 'neon-drift-best';
+function readBestScore() {
+  try { return Number(localStorage.getItem(BEST_SCORE_KEY) || 0); } catch { return 0; }
+}
+function writeBestScore(value) {
+  try { localStorage.setItem(BEST_SCORE_KEY, String(value)); } catch { /* Persistence is optional. */ }
+}
+const state = { running: false, score: 0, lives: 3, best: readBestScore(), speed: 1, spawnTimer: 0, shardTimer: 0, lastTime: 0 };
 const keys = { left: false, right: false };
 const player = { x: 0, y: 0, width: 25, height: 34, targetX: 0, tilt: 0, invulnerable: 0 };
 let stars = [];
@@ -53,7 +60,7 @@ function beginGame() { resetGame(); state.running = true; startPanel.classList.a
 function endGame() {
   state.running = false;
   state.best = Math.max(state.best, Math.floor(state.score));
-  localStorage.setItem('neon-drift-best', String(state.best));
+  writeBestScore(state.best);
   bestElement.textContent = formatScore(state.best); finalScoreElement.textContent = formatScore(state.score);
   gameOverPanel.classList.remove('is-hidden');
 }
